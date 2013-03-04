@@ -4,9 +4,9 @@
 
 (deftest cellToVar-test
   (testing "cellVar returns the correct int"
-    (is (= (cellToVar 1 2 3) 123))))
+    (is (= (cell-to-var 1 2 3) 233))))
 
 (deftest varToCell-test
   (testing "var returns correct string of numbers"
-    (is (= (varToCell 123) '(1 2 3))) 
-    (is (= (varToCell 999) '(9 9 9)))))
+    (is (= (var-to-cell 123) '(0 1 3))) 
+    (is (= (var-to-cell 999) '(8 8 9)))))

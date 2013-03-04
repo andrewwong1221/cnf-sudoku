@@ -9,7 +9,7 @@
 
 (defn cell-to-var [i j k]
   "Converts a cell to an integer"
-  (+ (* (inc i) 100 ) (* (inc j) 10) (inc k)))
+  (+ (* (inc i) 100 ) (* (inc j) 10) k))
 
 (defn var-to-cell [var]
   "Converts an integer to cell representaiton"
@@ -45,14 +45,16 @@
 (defn cell-has-value-constraint [i j size]
   "Constraint enforcing that a cell has at least one value"
   (vector (vec (for [k (range size)]
-    (cell-to-var i j k)))))
+    (cell-to-var i j (inc k))))))
 
 
 (defn cell-is-unique-constraint [i j size]
   "Ensures that each cell can only have one value"
-  (vec (remove nil? (for [m (range size)
-             n (range size)]  
-             (when (not= m n) (vector (neg (cell-to-var i j m))  (neg (cell-to-var i j n))))))))
+  (vec (remove nil? 
+               (for [m (range size)
+                     n (range size)]  
+             (when (not= m n) 
+               (vector (neg (cell-to-var i j (inc m)))  (neg (cell-to-var i j (inc n)))))))))
 
 (defn cell-constraints [size]
   "Combines 'has-value' and 'is-unique' constraints"
