@@ -83,7 +83,7 @@
   (vec (for [k (range size)]
     (vec (for [i (range (* x subsize) (+ subsize (* x subsize)))
           j (range (* y subsize) (+ subsize (* y subsize)))]
-      (cell-to-var i j k))))))
+      (cell-to-var i j (inc k)))))))
 
 (defn box-constraints [size subsize]
   "Generate all box constraints"
